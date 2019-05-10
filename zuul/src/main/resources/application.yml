@@ -1,0 +1,49 @@
+zuul:
+  ignored-services: '*'
+  routes:
+    users:
+      path: /config/**
+      sensitiveHeaders:
+      serviceId: config
+      stripPrefix: false
+  retryable: true
+  application:
+    name: zuul
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3360000
+ribbon:
+  ReadTimeout: 60000  # µ•Œª∫¡√Î ˝
+  ConnectTimeout: 3000
+  eureka:
+    enabled: true
+server:
+  port: 8000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8701/eureka/,http://localhost:8702/eureka/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
